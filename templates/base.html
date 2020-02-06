@@ -16,17 +16,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            // collapsible initalise
             $('.collapsible').collapsible();
+            // select options initalise
+            $('select').material_select();
         })
+
+        // date picker format
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: false // Close upon selecting a date,
+        });
 
         document.getElementById("matfix").addEventListener("click", function(e) {
             e.stopPropagation();
         });
     </script>
-    <!--<script type="text/javascript">
-        document.getElementById("matfix").addEventListener("click", function(e) {
-            e.stopPropagation();
-        });
-    </script>-->
 </body>
 </html>
