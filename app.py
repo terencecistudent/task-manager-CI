@@ -112,6 +112,24 @@ def delete_category(category_id):
     return redirect(url_for('get_categories'))
 
 
+# Access our Mongo database in preparation for the insert.
+# Create another variable called category_doc,
+# which will be equal to a new BSON formatted document.
+# Get the form field, which is category_name.
+# Add the category_doc into the categories table.
+@app.route('/insert_category', methods=['POST'])
+def insert_category():
+    category_doc = {'category_name': request.form.get('category_name')}
+    mongo.db.categories.insert_one(category_doc)
+    return redirect(url_for('get_categories'))
+
+
+# Returns a render template, which is a rendering of a view.
+@app.route('/add_category')
+def add_category():
+    return render_template('addcategory.html')
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
